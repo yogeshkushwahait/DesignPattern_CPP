@@ -9,3 +9,6 @@ Application needs one, and only one, instance of an object. Additionally, lazy i
 * Define a public static accessor function in the class which return instance of class
 * Do "lazy initialization" (creation on first use) in the accessor function.
 * Clients may only use the accessor function to manipulate the Singleton.
+
+
+![image](./Singleton.png)

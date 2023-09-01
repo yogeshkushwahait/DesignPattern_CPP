@@ -17,3 +17,4 @@ their instantiation.
 * Consider designing an internal "object pool" that will allow objects to be reused instead
   of created from scratch.
 * Consider making all constructors private or protected.
+![image](./Factorymethod.png)

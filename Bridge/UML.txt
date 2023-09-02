@@ -1,0 +1,14 @@
+@startuml
+class DrawAPI
+{
++draw()
+}
+class Shape
+{
++draw()
+}
+Client-->Shape
+Shape-->DrawAPI
+DrawAPI<|--OpenGLDrawAPI
+DrawAPI<|--VulkanDrawAPI
+@enduml

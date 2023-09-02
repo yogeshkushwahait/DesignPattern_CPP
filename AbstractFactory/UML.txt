@@ -1,0 +1,24 @@
+@startuml
+class Shape
+{
++ draw()
+}
+class ShapeFactory
+{
++ CreateRectangle()
++ CreateCircle()
+}
+
+Shape <|-- Rectangle
+Rectangle<|-- openGLRectangle
+Rectangle<|-- VulkanRectangle
+Shape <|-- Circle
+Circle<|--OpenGLCircle
+Circle<|--VulkanCircle
+
+Client -- ShapeFactory 
+ShapeFactory --> Circle
+ShapeFactory --> Rectangle
+ShapeFactory<|--OpenGLShapeFactory
+ShapeFactory<|--VulkanShapeFactory
+@enduml

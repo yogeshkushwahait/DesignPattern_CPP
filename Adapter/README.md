@@ -12,4 +12,6 @@ An "off the shelf" component offers compelling functionality that you would like
 * The adapter/wrapper class "has a" instance of the adaptee class.
 * The adapter/wrapper class "maps" the client interface to the adaptee interface.
 * The client uses (is coupled to) the new interface
-![image](./Adaptar,png)
+
+
+![image](./Adapter.png)

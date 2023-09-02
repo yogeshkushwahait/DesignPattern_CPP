@@ -1,0 +1,36 @@
+@startuml
+class House
+{
++ setBasement()
++ setStructure()
++ setRoof()
++ setInterior()
+}
+class HousePlan
+{
+- basement
+- structure
+- roof
+- interior
+}
+HousePlan<|--House
+
+class HouseBuilder
+{
++ buildBasement()
++ buildStructure()
++ buildRoof()
++ buildInterior()
++ getHouse():House
+}
+
+House<--HouseBuilder
+HouseBuilder<|--IglooHouseBuilder
+HouseBuilder<|--TipiHouseBuilder
+class CivilEngineer
+{
++ constructHouse()
++ getHouse():House
+}
+CivilEngineer-->HouseBuilder
+@enduml

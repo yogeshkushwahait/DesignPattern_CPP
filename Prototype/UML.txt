@@ -1,0 +1,18 @@
+@startuml
+class Shape
+{
++ draw()
++ clone():shape
+}
+class ShapeCache
+{
++ static LoadCache()
++ static getShape():Shape
+}
+Shape<|-- Rectangle
+Shape<|-- Circle
+Shape<|-- Triangle
+Shape<|-- polygon
+ShapeCache-->Shape
+Client-->ShapeCache
+@enduml

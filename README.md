@@ -11,7 +11,6 @@ These design patterns provide a way to create objects while hiding the creation 
 * Abstract Factory
 * Builder
 * Factory Method
-* Object Pool
 * Prototype
 * Singleton
 #### Structural Patterns
@@ -22,7 +21,6 @@ These design patterns concern class and object composition. Concept of inheritan
 * Decorator
 * Facade
 * Flyweight
-* Private Class Data
 * Proxy
 #### Behavioral Patterns
 These design patterns are specifically concerned with communication between objects.
@@ -32,7 +30,6 @@ These design patterns are specifically concerned with communication between obje
 * Iterator
 * Mediator
 * Memento
-* Null Object
 * Observer
 * State
 * Strategy

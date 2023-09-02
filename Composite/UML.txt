@@ -1,0 +1,10 @@
+@startuml
+class Menu
+{
++ AddMenu()
+- MenuList:vector<Menu>
+- MenuName:string
+}
+Menu-->Menu
+Client-->Menu
+@enduml

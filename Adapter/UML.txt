@@ -1,0 +1,13 @@
+@startuml
+class LegacyRectangle
+{
++oldDraw();
+}
+class Shape
+{
++draw()
+}
+LegacyRectangle<-- Rectangle
+Rectangle<|-Shape
+Rectangle<--Client
+@enduml

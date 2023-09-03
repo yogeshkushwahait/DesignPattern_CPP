@@ -1,0 +1,25 @@
+@startuml
+class Database
+{
++ isValidUser()
++ isValidPassword()
++ whatsRole()
+}
+class Handler
+{
++ setNextHandler()
++ handle()
+# handleNext()
+- nextHandler
+}
+class AuthService
+{
++ LogIn()
+}
+AuthService-->Handler
+Database<-- Handler
+Handler<|-- UserExistHandler
+Handler<|-- ValidPasswordHandler
+Handler<|-- RoleCheckHandler
+Client-->AuthService
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+class Shape
+{
++ draw()
+}
+Shape<|-- Rectangle
+Shape<|-- Circle
+Shape<|-- Triangle
+Shape<|-- Polygon
+class Shapemaker
+{
++ drawRectangle()
++ drawCircle()
++ drawTriangle()
++ drawPolygon()
+}
+Shapemaker--> Shape
+Client--> Shapemaker
+@enduml

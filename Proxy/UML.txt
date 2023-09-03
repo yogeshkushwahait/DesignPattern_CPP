@@ -1,0 +1,16 @@
+@startuml
+class AbstractItemModel
+{
++ appendItem()
++ printItem()
++ fetchItemList()
+}
+AbstractItemModel<|-- StandardItemModel
+class AbstractProxyModel
+{
++ printItem()
+}
+AbstractProxyModel<|--SortedProxyModel
+AbstractProxyModel-->AbstractItemModel
+Client --> AbstractProxyModel
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+class Stock
+{
++ buy()
++ sell()
+}
+class Order
+{
++ execute()
+- stock
+}
+class Broker
+{
++ takeOrder()
++ placeOrder()
+- orderList
+}
+Stock<--Order
+Order<|--BuyStock
+Order<|--SellStock
+Broker-->Order
+Client-->Broker
+@enduml

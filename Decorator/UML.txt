@@ -1,0 +1,12 @@
+@startuml
+class Widget
+{
++ draw()
+}
+
+Widget<|-- MainWidow
+Widget<|-- Decorator
+Decorator<|--VerticalSB
+Decorator<|--HorizontalSB
+Decorator<|--Border
+@enduml

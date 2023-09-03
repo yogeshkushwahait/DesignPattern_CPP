@@ -1,0 +1,11 @@
+@startuml
+class Player
+{
++ assignWeapon()
++ mission()
+}
+Player<|--Soldier
+Player<|--Terrorist
+PlayerFactory-->Player
+Client-->PlayerFactory
+@enduml

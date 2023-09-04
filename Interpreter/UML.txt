@@ -1,0 +1,17 @@
+@startuml
+class RomanNumber
+{
++ interpret()
++ one()
++ four()
++ five()
++ nine()
++ multiplier()
+}
+RomanNumber<|--Thousand
+RomanNumber<|--Hundred
+RomanNumber<|--Ten
+RomanNumber<|--One
+RNInterpreter --> RomanNumber
+Client --> RNInterpreter 
+@enduml

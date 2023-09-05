@@ -1,5 +1,8 @@
 #include <iostream>
-#include <memory>
+#include <queue>
+#include <string>
+#include <mutex>
+#include <thread>
 /*
 ## Mediator Design Pattern
 ### Intent
@@ -16,36 +19,80 @@ We want to design reusable components, but dependencies between the potentially 
 * Be careful not to create a "controller" or "god" object.
 */
 using namespace std;
-class User
+class Mediator
 {
 public:
-    virtual std::string getName()=0;
-    virtual ~User()=default;
+    Mediator()=delete;
+    ~Mediator()=delete;
+    Mediator(const Mediator&) = delete;
+    Mediator(const Mediator &&) = delete;
+    Mediator& operator=(const Mediator&) = delete;
+    Mediator& operator=(const Mediator&&) = delete;
+    //static functions
+    static void store(const std::string& message)
+    {
+        const std::lock_guard<std::mutex> lock(m_mutex);
+        m_MessageQueue.push(message);
+    }
+    static std::string retrive()
+    {
+       const std::lock_guard<std::mutex> lock(m_mutex);
+       std::string Message = m_MessageQueue.front();
+       m_MessageQueue.pop();
+       return Message;
+    }
+    static bool isEmpty()
+    {
+       return m_MessageQueue.empty();
+    }
+public:
+    static std::mutex m_mutex;
+    static std::queue<std::string> m_MessageQueue;
 };
-class ChatRoom
+std::queue<std::string> Mediator::m_MessageQueue{};
+std::mutex Mediator::m_mutex{};
+static int MessageCount=0;
+std::mutex out_mutex;
+std::mutex in_mutex;
+class Producer
 {
+
 public:
-   static void showMessage(User* user, const std::string& message)
-   {
-     std::cout<<" [" + user->getName() + "] : " + message<<std::endl;
-   }
+    void operator()() const
+    {
+       const std::lock_guard<std::mutex> lock(in_mutex);
+       MessageCount++;
+       std::string Message = "Producer Message No:" + std::to_string(MessageCount);
+       Mediator::store(Message);
+    }
 };
-class ChatUser:public User
+class Consumer
 {
 public:
-   std::string getName() override {return name;}
-   void setName(std::string name) {this->name = name;}
-   ChatUser(std::string name){this->name = name;}
-   void sendMessage(std::string message){ChatRoom::showMessage(this,message);}
-private:
-    std::string name;
+    void operator()() const
+    {
+        const std::lock_guard<std::mutex> lock(out_mutex);
+        if(!Mediator::isEmpty())
+        {
+         std::cout<<"Consumer Consume Message From: "<<Mediator::retrive()<<std::endl;
+        }
+        else
+        {
+          std::cout<<"No Message For Consume"<<std::endl;
+        }
+    }
 };
 
 int main()
 {
-    std::unique_ptr<ChatUser> ChatUser1 = std::make_unique<ChatUser>("John");
-    std::unique_ptr<ChatUser> ChatUser2 = std::make_unique<ChatUser>("Robert");
-    ChatUser1->sendMessage("Hi John");
-    ChatUser2->sendMessage("Hi Robert");
+    for(int i=0;i<10;i++)
+    {
+     std::thread ProducerObj{Producer()};
+     ProducerObj.join();
+     std::thread ConsumerObj{Consumer()};
+     ConsumerObj.join();
+    }
+     std::thread ConsumerObj{Consumer()};
+     ConsumerObj.join();
     return 0;
 }

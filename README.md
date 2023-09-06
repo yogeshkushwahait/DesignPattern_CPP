@@ -35,3 +35,8 @@ These design patterns are specifically concerned with communication between obje
 * Strategy
 * Template method
 * Visitor
+
+### References
+[SourceMaking](https://sourcemaking.com/design_patterns)
+[geeksforgeeks](https://www.geeksforgeeks.org/software-design-patterns/)
+[tutorialspoint](https://www.tutorialspoint.com/design_pattern/design_pattern_overview.htm)
